@@ -8,9 +8,11 @@ Created on Wed Sep 12 00:22:37 2018
 try:
     import tkinter as tk
     from tkinter import filedialog
+    from tkinter import messagebox
 except Importerror:
     import Tkinter as tk
     from Tkinter import filedialog
+    from Tkinter import messagebox
 import tkinterhtml as tkhtml
 import markdown as mk
 
@@ -21,14 +23,14 @@ def loadfile(filename):
         text.insert('1.0', tmpfile.read())
         tmpfile.close()
     except IOError:
-        tk.messagebox.showerror(title='Error', message='''There's no such file''')
+        messagebox.showerror(title='Error', message='''There's no such file''')
 def savefile(filename):
     try:
         tmpfile = open(filename,'w+')
         tmpfile.write(text.get('1.0', tk.END))
         tmpfile.close()
     except IOError:
-        tk.messagebox.showerror(title='Error', message='''File save error''')
+        messagebox.showerror(title='Error', message='''File save error''')
 def markdownencoding():
     htmlframe.set_content(mk.markdown(text.get('1.0', tk.END)))
     #text2.insert(tk.INSERT, text.get('1.0', tk.END))
